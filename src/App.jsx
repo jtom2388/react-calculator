@@ -16,8 +16,8 @@ function App() {
           <div className='operators'>
             <div>+</div>
             <div>-</div>
-            <div>&times</div>
-            <div>&divide</div>
+            <div>x</div>
+            <div>/</div>
           </div>
           <div className='leftPanel'>
             <div className='numbers'>

@@ -8,6 +8,62 @@ function App() {
   const [reset, setReset] = useState(true);
   const [operator, setOperator] = useState('');
 
+  const operatorChange = (op, e) => {
+    e.preventDefault();
+    setOperator(op);
+    setReset(true);
+  }
+
+  const clear = e => {
+    e.preventDefault();
+    setValue('0');
+    setSecondVal('');
+    setReset(true);
+    setOperator('');
+  }
+
+  const updateValue = (num, e) => {
+    e.preventDefault();
+    if(operator === '') {
+      if(reset) {
+        setValue(num);
+        setReset(false);
+      } else {
+        if(reset) {
+          setSecondVal(num);
+          setReset(false);
+        } else {
+          setSecondVal(setSecondVal + num);
+        }
+      }
+    }
+  }
+
+  const result = () => {
+    let result;
+    switch(operator) {
+      case '+':
+        result = parseFloat(value) + parseFloat(secondVal);
+        break;
+      case '-':
+        result = parseFloat(value) - parseFloat(secondVal);
+        break;
+      case '*':
+        result = parseFloat(value) * parseFloat(secondVal);
+        break;
+      case '/':
+        result = parseFloat(value) / parseFloat(secondVal);
+        break;
+      default:
+        result = parseFloat(value);
+    }
+
+    setOperator('');
+    setValue(result.toString());
+    setSecondVal('');
+    setReset(true);
+  }
+
   return (
     <div className='App'>
       <div className='calculator'>
